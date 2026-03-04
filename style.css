@@ -340,50 +340,49 @@ ul {
     left: 10%;
     animation-duration: 18s;
     filter: blur(1px);
-    /* Sharp */
+    /* Sharper background */
 }
 
 .box-2 {
-    width: 120px;
-    height: 120px;
-    top: 65%;
-    left: 5%;
+    width: 180px;
+    /* Increased size */
+    height: 180px;
+    top: 60%;
+    left: -20px;
     animation-duration: 25s;
     animation-delay: -5s;
-    filter: blur(4px);
-    /* Close */
+    filter: blur(15px);
+    /* Strong foreground blur */
 }
 
 .box-3 {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     top: 25%;
     right: 15%;
     animation-duration: 22s;
     animation-delay: -2s;
-    filter: blur(2px);
-    /* Middle */
+    filter: blur(3px);
 }
 
 .box-4 {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    /* Much larger */
+    height: 250px;
     top: 70%;
-    right: 10%;
-    animation-duration: 28s;
-    filter: blur(6px);
-    /* Very Close */
+    right: -50px;
+    animation-duration: 30s;
+    filter: blur(25px);
+    /* Very strong bokeh effect */
 }
 
 .box-5 {
-    width: 40px;
-    height: 40px;
-    top: 45%;
+    width: 50px;
+    height: 50px;
+    top: 40%;
     left: 45%;
     animation-duration: 20s;
-    animation-delay: -10s;
     filter: blur(0px);
-    /* Far Away */
 }
 
 @keyframes pulse-gold {
