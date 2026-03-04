@@ -10,35 +10,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mobile Menu Toggle
-    const mobileToggle = document.querySelector('.mobile-toggle');
+    const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    mobileToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
 
     // Hero Slider Logic
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.slider-dot');
     let currentSlide = 0;
     const slideInterval = 5000;
+    let slideTimer;
 
-    function nextSlide() {
+    function goToSlide(n) {
         if (slides.length === 0) return;
         slides[currentSlide].classList.remove('active');
         dots[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
+        currentSlide = (n + slides.length) % slides.length;
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
     }
 
-    if (slides.length > 0) {
-        let slideTimer = setInterval(nextSlide, slideInterval);
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+    }
 
-        function resetTimer() {
-            clearInterval(slideTimer);
-            slideTimer = setInterval(nextSlide, slideInterval);
+    function resetTimer() {
+        if (slideTimer) clearInterval(slideTimer);
+        slideTimer = setInterval(nextSlide, slideInterval);
+    }
+
+    // Hero Slider Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const heroSlider = document.querySelector('.hero-slider');
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+            goToSlide(currentSlide + 1); // Swipe Left -> Next
+            resetTimer();
+        } else if (touchEndX > touchStartX + 50) {
+            goToSlide(currentSlide - 1); // Swipe Right -> Prev
+            resetTimer();
         }
+    }
+
+    if (heroSlider) {
+        heroSlider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        heroSlider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+
+    if (slides.length > 0) {
+        slideTimer = setInterval(nextSlide, slideInterval);
 
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
@@ -140,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) {
                 // If mobile menu is open, close it
                 navLinks.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
 
                 target.scrollIntoView({
                     behavior: 'smooth'
