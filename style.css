@@ -317,16 +317,22 @@ ul {
     height: 100%;
     overflow: hidden;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+    /* Above hero-bg-waves (0) */
 }
 
 .floating-box {
     position: absolute;
-    border: 1.5px solid rgba(212, 175, 55, 0.12);
+    border: 1.5px solid rgba(212, 175, 55, 0.3);
+    /* Increased border opacity */
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(212, 175, 55, 0.05);
+    /* Soft gold fill */
     backdrop-filter: blur(2px);
-    opacity: 0.1;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    /* Subtle glow */
+    opacity: 0.6;
+    /* Increased overall opacity for better visibility */
     animation: float-premium linear infinite;
 }
 
