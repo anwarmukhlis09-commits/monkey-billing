@@ -1338,18 +1338,80 @@ input:checked+.slider:before {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
-        max-width: 300px;
+        width: 100%;
+        /* Full width for cleaner alignment */
         height: 100vh;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(25px);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        /* Move items up as requested */
         align-items: center;
-        gap: 30px;
-        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        padding-top: 140px;
+        /* Space from top */
+        gap: 24px;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 1000;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-links li {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Staggered Delay for Menu Items */
+    .nav-links.active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-links.active li:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    .nav-links.active li:nth-child(3) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-links.active li:nth-child(4) {
+        transition-delay: 0.25s;
+    }
+
+    .nav-links.active li:nth-child(5) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-links.active li:nth-child(6) {
+        transition-delay: 0.35s;
+    }
+
+    .nav-links a {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        letter-spacing: -0.5px;
+        display: block;
+        padding: 10px;
+    }
+
+    .mobile-cta {
+        margin-top: 20px;
+        width: 80% !important;
+        max-width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        background: var(--gold-gradient);
+        color: white !important;
+        border-radius: 14px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
     }
 
     .nav-links.active {
