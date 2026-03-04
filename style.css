@@ -253,14 +253,36 @@ ul {
 
 .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 32px;
+    /* Slightly tighter gap */
+    margin-left: auto;
+    /* Push towards the right */
+    margin-right: 50px;
+    /* Space between links and CTA */
 }
 
 .nav-links a {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--charcoal);
     font-size: 0.95rem;
-    opacity: 0.8;
+    letter-spacing: -0.2px;
+    opacity: 0.7;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-gradient);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-links a:hover {
