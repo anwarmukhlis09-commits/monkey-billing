@@ -317,21 +317,23 @@ ul {
     height: 100%;
     overflow: hidden;
     pointer-events: none;
-    z-index: 1;
-    /* Above hero-bg-waves (0) */
+    z-index: 5;
+    /* Increased to ensure it's not buried */
 }
 
 .floating-box {
     position: absolute;
-    border: 1.5px solid rgba(212, 175, 55, 0.25);
+    border: 2px solid #D4AF37;
+    /* Solid gold for maximum visibility */
     border-radius: 12px;
-    background: rgba(212, 175, 55, 0.05);
-    backdrop-filter: blur(1px);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
-    opacity: 0.5;
-    /* Reduced slightly for more subtle premium feel */
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    opacity: 0.8;
+    /* High opacity */
     animation: float-premium linear infinite, pulse-gold 4s ease-in-out infinite alternate;
 }
+
+/* Removed backdrop-filter line which was causing issues with CSS filter blur */
 
 .box-1 {
     width: 60px;
