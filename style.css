@@ -323,17 +323,14 @@ ul {
 
 .floating-box {
     position: absolute;
-    border: 1.5px solid rgba(212, 175, 55, 0.3);
-    /* Increased border opacity */
+    border: 1.5px solid rgba(212, 175, 55, 0.25);
     border-radius: 12px;
     background: rgba(212, 175, 55, 0.05);
-    /* Soft gold fill */
-    backdrop-filter: blur(2px);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
-    /* Subtle glow */
-    opacity: 0.6;
-    /* Increased overall opacity for better visibility */
-    animation: float-premium linear infinite;
+    backdrop-filter: blur(1px);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
+    opacity: 0.5;
+    /* Reduced slightly for more subtle premium feel */
+    animation: float-premium linear infinite, pulse-gold 4s ease-in-out infinite alternate;
 }
 
 .box-1 {
@@ -342,6 +339,8 @@ ul {
     top: 15%;
     left: 10%;
     animation-duration: 18s;
+    filter: blur(1px);
+    /* Sharp */
 }
 
 .box-2 {
@@ -351,6 +350,8 @@ ul {
     left: 5%;
     animation-duration: 25s;
     animation-delay: -5s;
+    filter: blur(4px);
+    /* Close */
 }
 
 .box-3 {
@@ -360,6 +361,8 @@ ul {
     right: 15%;
     animation-duration: 22s;
     animation-delay: -2s;
+    filter: blur(2px);
+    /* Middle */
 }
 
 .box-4 {
@@ -368,6 +371,8 @@ ul {
     top: 70%;
     right: 10%;
     animation-duration: 28s;
+    filter: blur(6px);
+    /* Very Close */
 }
 
 .box-5 {
@@ -377,6 +382,20 @@ ul {
     left: 45%;
     animation-duration: 20s;
     animation-delay: -10s;
+    filter: blur(0px);
+    /* Far Away */
+}
+
+@keyframes pulse-gold {
+    0% {
+        border-color: rgba(212, 175, 55, 0.2);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.05);
+    }
+
+    100% {
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+    }
 }
 
 @keyframes float-premium {
