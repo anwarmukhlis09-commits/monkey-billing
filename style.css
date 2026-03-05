@@ -1151,7 +1151,7 @@ input:checked+.slider:before {
     font-size: 1.1rem;
 }
 
-.slider {
+.roi-slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -1161,7 +1161,7 @@ input:checked+.slider:before {
     outline: none;
 }
 
-.slider::-webkit-slider-thumb {
+.roi-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 24px;
     height: 24px;
@@ -1169,6 +1169,7 @@ input:checked+.slider:before {
     background: var(--gold-gradient);
     cursor: pointer;
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    border: none;
 }
 
 .calc-note {
