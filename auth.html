@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Daftar - Moonkey Billing</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific page adjustments for Auth */
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+            animation: card-reveal 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes card-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-toggle {
+            display: flex;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 5px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            color: var(--charcoal);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fade-in 0.4s ease;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-gold-start);
+            background: white;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2rem;
+        }
+
+        .btn-full {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-divider {
+            position: relative;
+            margin-bottom: 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .social-divider::before,
+        .social-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .social-divider::before {
+            left: 0;
+        }
+
+        .social-divider::after {
+            right: 0;
+        }
+
+        .social-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--primary-gold-start);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Mesh (Consistent) -->
+    <div class="mesh-bg">
+        <div class="mesh-circle"></div>
+        <div class="mesh-circle"></div>
+    </div>
+
+    <div class="auth-card glass" style="padding: 40px; border-radius: 30px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="index.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
+                <img src="image/image.png" alt="Moonkey Logo" style="height: 40px;">
+                <span
+                    style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--charcoal);">
+                    Moonkey <span class="text-gradient">Billing</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="form-toggle">
+            <button class="toggle-btn active" onclick="switchForm('login')">Masuk</button>
+            <button class="toggle-btn" onclick="switchForm('register')">Daftar</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+            <h3 style="margin-bottom: 20px;">Selamat Datang Kembali</h3>
+            <div class="input-group">
+                <input type="email" placeholder="Email Anda" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="#" style="font-size: 0.9rem; color: var(--primary-gold-start); font-weight: 600;">Lupa
+                    Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Masuk Sekarang</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form">
+            <h3 style="margin-bottom: 20px;">Buat Akun ISP Baru</h3>
+            <div class="input-group">
+                <input type="text" placeholder="Nama Lengkap / Nama ISP" required>
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder="Email Bisnis" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Buat Password" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Konfirmasi Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Daftar Akun</button>
+        </form>
+
+        <div class="social-login">
+            <div class="social-divider">Atau masuk dengan</div>
+            <div class="social-btns">
+                <button class="social-btn" title="Google">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="24" height="24">
+                </button>
+                <button class="social-btn" title="WhatsApp">
+                    <img src="https://www.svgrepo.com/show/475692/whatsapp-color.svg" width="24" height="24">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchForm(formType) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+            if (formType === 'login') {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                toggleBtns[0].classList.add('active');
+                toggleBtns[1].classList.remove('active');
+            } else {
+                loginForm.classList.remove('active');
+                registerForm.classList.add('active');
+                toggleBtns[0].classList.remove('active');
+                toggleBtns[1].classList.add('active');
+            }
+        }
+
+        // Form submission prevents default for demo
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                alert('Fitur ini akan segera hadir dalam pengembangan backend!');
+            });
+        });
+    </script>
+</body>
+
+</html>
