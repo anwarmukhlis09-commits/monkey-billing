@@ -1305,32 +1305,53 @@ input:checked+.slider:before {
 
 /* ROI Calculator */
 .calculator-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    padding: 60px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 40px;
+    padding: 60px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .roi-stats {
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .roi-stat {
     background: white;
-    padding: 24px;
-    border-radius: 16px;
+    padding: 30px 50px;
+    border-radius: 24px;
     box-shadow: var(--shadow-soft);
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    border-left: 4px solid var(--primary-gold-start);
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.roi-stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gold-gradient);
 }
 
 .roi-val {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 800;
     color: var(--primary-gold-start);
+    letter-spacing: -1px;
+    line-height: 1;
 }
 
 .roi-label {
@@ -1343,6 +1364,9 @@ input:checked+.slider:before {
     padding: 40px;
     border-radius: 24px;
     box-shadow: var(--shadow-soft);
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 .calculator-text {

@@ -282,21 +282,26 @@
                 <div class="calculator-wrapper glass">
                     <div class="calculator-text">
                         <h2 class="section-title">Hitung Potensi <span class="text-gradient">Profit Anda</span></h2>
-                        <p>Lihat berapa banyak waktu dan biaya yang bisa Anda hemat dengan automasi Moonkey Billing.</p>
-                        <div class="roi-stats">
-                            <div class="roi-stat">
-                                <span class="roi-val" id="savings-val">Rp 0</span>
-                                <span class="roi-label">Potensi Penghematan/Bulan</span>
-                            </div>
-                        </div>
+                        <p>Geser slider di bawah untuk melihat estimasi penghematan operasional Anda setiap bulan.</p>
                     </div>
+
                     <div class="calculator-box">
                         <div class="input-group">
-                            <label for="subscriber-range">Jumlah Pelanggan: <span id="sub-count">500</span></label>
+                            <label for="subscriber-range"
+                                style="display: block; margin-bottom: 15px; font-weight: 600;">Jumlah Pelanggan: <span
+                                    id="sub-count" class="text-gradient">500</span></label>
                             <input type="range" id="subscriber-range" min="100" max="5000" step="100" value="500"
                                 class="roi-slider">
                         </div>
-                        <p class="calc-note">*Estimasi berdasarkan rata-rata biaya operasional penagihan manual.</p>
+                        <p class="calc-note">*Estimasi berdasarkan rata-rata biaya penagihan manual Rp 5.000/pelanggan.
+                        </p>
+                    </div>
+
+                    <div class="roi-stats">
+                        <div class="roi-stat reveal-up">
+                            <span class="roi-label">Potensi Penghematan / Bulan</span>
+                            <span class="roi-val" id="savings-val">Rp 2.500.000</span>
+                        </div>
                     </div>
                 </div>
             </div>
