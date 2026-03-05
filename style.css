@@ -322,12 +322,12 @@ ul {
 
 .floating-box {
     position: absolute;
-    border: 1.5px solid rgba(212, 175, 55, 0.15);
+    border: 2.5px solid rgba(212, 175, 55, 0.4);
     border-radius: 12px;
-    background: rgba(212, 175, 55, 0.03);
+    background: rgba(212, 175, 55, 0.1);
     backdrop-filter: blur(2px);
-    opacity: 0.25;
-    /* Subtle yet visible enough */
+    opacity: 0.5;
+    /* Increased for better visibility while keeping it premium */
     animation: float-premium linear infinite;
 }
 
