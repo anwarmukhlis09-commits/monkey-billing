@@ -308,7 +308,26 @@ ul {
     z-index: 0;
 }
 
-/* Floating Background Elements */
+.integration-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D4AF37;
+    flex-shrink: 0;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+}
+
+.integration-features li:hover .integration-icon-wrapper {
+    background: var(--gold-gradient);
+    color: white;
+    transform: translateY(-2px);
+}
+
 .hero-floating-boxes {
     position: absolute;
     top: 0;
