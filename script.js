@@ -99,14 +99,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (billingToggle) {
         billingToggle.addEventListener('change', () => {
-            priceVals.forEach(price => {
-                const monthly = price.getAttribute('data-monthly');
-                const yearly = price.getAttribute('data-yearly');
+            const pricingCards = document.querySelectorAll('.pricing-card');
 
-                price.style.opacity = '0';
+            pricingCards.forEach(card => {
+                const priceVal = card.querySelector('.price-val');
+                const priceSuffix = card.querySelector('.price-suffix');
+
+                if (!priceVal) return;
+
+                const monthly = priceVal.getAttribute('data-monthly');
+                const yearly = priceVal.getAttribute('data-yearly');
+
+                // Fade out
+                priceVal.style.opacity = '0';
+                if (priceSuffix) priceSuffix.style.opacity = '0';
+
                 setTimeout(() => {
-                    price.textContent = billingToggle.checked ? yearly : monthly;
-                    price.style.opacity = '1';
+                    // Update content
+                    priceVal.textContent = billingToggle.checked ? yearly : monthly;
+                    if (priceSuffix) {
+                        priceSuffix.textContent = billingToggle.checked ? '/thn' : '/bln';
+                    }
+
+                    // Fade in
+                    priceVal.style.opacity = '1';
+                    if (priceSuffix) priceSuffix.style.opacity = '1';
                 }, 200);
             });
         });
