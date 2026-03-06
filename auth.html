@@ -4,42 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Daftar - Moonkey Billing</title>
+    <title>Login - Monkey Billing</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Specific page adjustments for Auth */
-        body {
-            min-height: 100vh;
+        :root {
+            --auth-primary: #D4AF37;
+            --auth-primary-glow: rgba(212, 175, 55, 0.2);
+            --auth-bg: #F8F5F2;
+            /* Light beige/cream background from screenshot */
+            --auth-card-bg: #FFFFFF;
+            --auth-input-bg: #F9FAFB;
+            --auth-text-dark: #1A1A1A;
+            --auth-text-muted: #6B7280;
+            --auth-border: #F3F4F6;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--auth-bg);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
 
         .auth-card {
+            background: var(--auth-card-bg);
             width: 100%;
-            max-width: 450px;
-            animation: card-reveal 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            max-width: 480px;
+            padding: 50px 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
+            text-align: center;
         }
 
-        @keyframes card-reveal {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .auth-branding {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            text-decoration: none;
         }
 
-        .form-toggle {
+        .auth-logo-icon {
+            height: 64px !important;
+            width: auto;
+        }
+
+        .auth-logo-text {
+            font-size: 2.2rem !important;
+            font-weight: 800;
+            color: var(--auth-text-dark);
+            letter-spacing: -0.5px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .auth-logo-text span {
+            color: var(--auth-primary);
+            margin-left: 2px;
+        }
+
+        /* Toggle Buttons */
+        .auth-toggle {
             display: flex;
-            background: rgba(0, 0, 0, 0.05);
+            background: #F1F1F1;
             padding: 5px;
-            border-radius: 12px;
-            margin-bottom: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
         }
 
         .toggle-btn {
@@ -48,227 +82,196 @@
             border: none;
             background: transparent;
             font-weight: 600;
-            color: #666;
+            color: var(--auth-text-muted);
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 12px;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .toggle-btn.active {
             background: white;
-            color: var(--charcoal);
-            box-shadow: var(--shadow-soft);
+            color: var(--auth-text-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .auth-form {
-            display: none;
+        .welcome-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--auth-text-dark);
+            margin-bottom: 35px;
+            text-align: left;
         }
 
-        .auth-form.active {
-            display: block;
-            animation: fade-in 0.4s ease;
-        }
-
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: scale(0.98);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .input-group {
-            position: relative;
+        .form-group {
             margin-bottom: 20px;
+            text-align: left;
         }
 
-        .input-group input {
+        .input-control {
             width: 100%;
-            padding: 15px 15px 15px 45px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 12px;
+            padding: 18px 25px;
+            background: var(--auth-input-bg);
+            border: 1px solid var(--auth-border);
+            border-radius: 20px;
+            font-size: 1rem;
             outline: none;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            box-sizing: border-box;
+            color: var(--auth-text-dark);
         }
 
-        .input-group input:focus {
-            border-color: var(--primary-gold-start);
+        .input-control::placeholder {
+            color: #A0AEC0;
+        }
+
+        .input-control:focus {
+            border-color: var(--auth-primary);
             background: white;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 0 4px var(--auth-primary-glow);
         }
 
-        .input-group i {
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
             position: absolute;
-            left: 15px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
-            font-size: 1.2rem;
+            cursor: pointer;
+            color: #A0AEC0;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
         }
 
-        .btn-full {
+        .btn-auth {
             width: 100%;
+            padding: 18px;
+            background: var(--auth-text-dark);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
             margin-top: 10px;
         }
 
-        .social-login {
-            margin-top: 30px;
-            text-align: center;
+        .btn-auth:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
         }
 
-        .social-divider {
-            position: relative;
-            margin-bottom: 20px;
-            color: #999;
+        .auth-footer {
+            margin-top: 25px;
             font-size: 0.9rem;
+            color: var(--auth-text-muted);
         }
 
-        .social-divider::before,
-        .social-divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 30%;
-            height: 1px;
-            background: rgba(0, 0, 0, 0.05);
+        .auth-footer a {
+            color: var(--auth-primary);
+            font-weight: 700;
+            text-decoration: none;
         }
 
-        .social-divider::before {
-            left: 0;
-        }
+        /* Responsive */
+        @media (max-width: 540px) {
+            body {
+                padding: 20px;
+            }
 
-        .social-divider::after {
-            right: 0;
-        }
-
-        .social-btns {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-soft);
-            border-color: var(--primary-gold-start);
+            .auth-card {
+                padding: 40px 25px;
+                border-radius: 30px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Background Mesh (Consistent) -->
-    <div class="mesh-bg">
-        <div class="mesh-circle"></div>
-        <div class="mesh-circle"></div>
-    </div>
+    <div class="auth-card">
+        <!-- Logo Section -->
+        <a href="index.html" class="auth-branding">
+            <img src="image/image.png" alt="Monkey Logo" class="auth-logo-icon">
+            <span class="auth-logo-text">Monkey <span>Billing</span></span>
+        </a>
 
-    <div class="auth-card glass" style="padding: 40px; border-radius: 30px;">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <a href="index.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
-                <img src="image/image.png" alt="Moonkey Logo" style="height: 40px;">
-                <span
-                    style="font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--charcoal);">
-                    Moonkey <span class="text-gradient">Billing</span>
-                </span>
-            </a>
+        <!-- Masuk/Daftar Toggle -->
+        <div class="auth-toggle">
+            <button class="toggle-btn active" id="btn-login">Masuk</button>
+            <button class="toggle-btn" id="btn-register">Daftar</button>
         </div>
 
-        <div class="form-toggle">
-            <button class="toggle-btn active" onclick="switchForm('login')">Masuk</button>
-            <button class="toggle-btn" onclick="switchForm('register')">Daftar</button>
-        </div>
+        <!-- Heading -->
+        <h1 class="welcome-text">Selamat Datang Kembali</h1>
 
-        <!-- Login Form -->
-        <form id="login-form" class="auth-form active">
-            <h3 style="margin-bottom: 20px;">Selamat Datang Kembali</h3>
-            <div class="input-group">
-                <input type="email" placeholder="Email Anda" required>
+        <!-- Form -->
+        <form id="login-form">
+            <div class="form-group">
+                <input type="email" id="email" class="input-control" placeholder="Email Anda" required>
             </div>
-            <div class="input-group">
-                <input type="password" placeholder="Password" required>
+
+            <div class="form-group">
+                <div class="password-wrapper">
+                    <input type="password" id="password" class="input-control" placeholder="Password" required>
+                    <button type="button" class="toggle-password" id="toggle-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div style="text-align: right; margin-bottom: 20px;">
-                <a href="#" style="font-size: 0.9rem; color: var(--primary-gold-start); font-weight: 600;">Lupa
-                    Password?</a>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Masuk Sekarang</button>
+
+            <button type="submit" class="btn-auth">Login</button>
         </form>
 
-        <!-- Register Form -->
-        <form id="register-form" class="auth-form">
-            <h3 style="margin-bottom: 20px;">Buat Akun ISP Baru</h3>
-            <div class="input-group">
-                <input type="text" placeholder="Nama Lengkap / Nama ISP" required>
-            </div>
-            <div class="input-group">
-                <input type="email" placeholder="Email Bisnis" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Buat Password" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Konfirmasi Password" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Daftar Akun</button>
-        </form>
-
-        <div class="social-login">
-            <div class="social-divider">Atau masuk dengan</div>
-            <div class="social-btns">
-                <button class="social-btn" title="Google">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="24" height="24">
-                </button>
-                <button class="social-btn" title="WhatsApp">
-                    <img src="https://www.svgrepo.com/show/475692/whatsapp-color.svg" width="24" height="24">
-                </button>
-            </div>
+        <div class="auth-footer">
+            Belum punya akun? <a href="#" id="to-signup">Daftar Sekarang</a>
         </div>
     </div>
 
     <script>
-        function switchForm(formType) {
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const toggleBtns = document.querySelectorAll('.toggle-btn');
+        // Password visibility toggle
+        const togglePass = document.getElementById('toggle-password');
+        const passInput = document.getElementById('password');
 
-            if (formType === 'login') {
-                loginForm.classList.add('active');
-                registerForm.classList.remove('active');
-                toggleBtns[0].classList.add('active');
-                toggleBtns[1].classList.remove('active');
-            } else {
-                loginForm.classList.remove('active');
-                registerForm.classList.add('active');
-                toggleBtns[0].classList.remove('active');
-                toggleBtns[1].classList.add('active');
-            }
-        }
+        togglePass.addEventListener('click', () => {
+            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passInput.setAttribute('type', type);
 
-        // Form submission prevents default for demo
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                alert('Fitur ini akan segera hadir dalam pengembangan backend!');
-            });
+            // Toggle icon color
+            togglePass.style.color = type === 'text' ? '#D4AF37' : '#A0AEC0';
+        });
+
+        // Toggle Buttons Logic (UI Only)
+        const btnLogin = document.getElementById('btn-login');
+        const btnRegister = document.getElementById('btn-register');
+        const welcomeText = document.querySelector('.welcome-text');
+
+        btnRegister.addEventListener('click', () => {
+            btnLogin.classList.remove('active');
+            btnRegister.classList.add('active');
+            welcomeText.textContent = 'Daftar Akun Baru';
+        });
+
+        btnLogin.addEventListener('click', () => {
+            btnRegister.classList.remove('active');
+            btnLogin.classList.add('active');
+            welcomeText.textContent = 'Selamat Datang Kembali';
+        });
+
+        // Form Submission
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Akses Portal segera hadir! 🐒✨');
         });
     </script>
 </body>
