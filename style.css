@@ -263,14 +263,14 @@ ul {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 1.5rem;
+    gap: 15px;
+    font-size: 2rem !important;
     font-weight: 700;
     font-family: var(--font-heading);
 }
 
 .logo-img {
-    height: 32px;
+    height: 60px !important;
     width: auto;
     object-fit: contain;
 }
