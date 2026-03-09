@@ -144,24 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ROI Calculator
-    const subRange = document.getElementById('subscriber-range');
-    const subCount = document.getElementById('sub-count');
-    const savingsVal = document.getElementById('savings-val');
-
-    const updateROI = () => {
-        if (!subRange) return;
-        const subscribers = parseInt(subRange.value);
-        const savings = subscribers * 5000; // Example: Rp 5.000 saved per sub
-
-        subCount.textContent = subscribers.toLocaleString();
-        savingsVal.textContent = 'Rp ' + savings.toLocaleString();
-    };
-
-    if (subRange) {
-        subRange.addEventListener('input', updateROI);
-        updateROI(); // Initial calc
-    }
 
     // Scroll Reveal Animation
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
@@ -203,11 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Live Ticker Logic
     const tickerText = document.getElementById('ticker-text');
     const messages = [
-        'Sistem Aktif: 1,284 Pelanggan Terkoneksi Real-time',
-        'Notifikasi WA: 15 Invoice dikirim otomatis hari ini',
-        'Auto Isolir: 3 Layanan dinonaktifkan sementara',
-        'Network Status: Up-time Router Pusat 99.98%',
-        'Pembayaran: Rp 12.5M diproses bulan ini'
+        'Network Status: Up-time 99.98%',
+        'Paket Promo: Tersedia Hari Ini'
     ];
     let msgIndex = 0;
 
