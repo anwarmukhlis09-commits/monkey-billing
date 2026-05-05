@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DistroCalc Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --success: #16A34A;
+            --danger: #DC2626;
+            --bg: #F3F4F6;
+            --card: #FFFFFF;
+            --radius: 16px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); padding: 20px 16px 100px; min-height: 100vh; color: #1F2937; }
+        .container { max-width: 450px; margin: 0 auto; }
+        
+        header { position: relative; text-align: center; margin-bottom: 24px; padding-top: 10px; }
+        header h1 { font-family: 'Outfit', sans-serif; font-size: 24px; color: var(--primary); }
+        .home-btn { position: absolute; left: 0; top: 10px; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: white; border-radius: 12px; color: #6B7280; border: 1px solid #E5E7EB; text-decoration: none; }
+
+        .mode-switcher { display: flex; background: #E5E7EB; padding: 4px; border-radius: 14px; margin-bottom: 24px; }
+        .mode-btn { flex: 1; padding: 10px; border: none; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; color: #6B7280; background: transparent; }
+        .mode-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+        .card { background: var(--card); border-radius: var(--radius); padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 16px; border: 1px solid #E5E7EB; }
+        label { display: block; font-size: 11px; font-weight: 700; color: #6B7280; text-transform: uppercase; margin-bottom: 6px; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 16px; font-weight: 600; background: white; }
+
+        .item-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .input-wrapper { position: relative; flex: 1; }
+        .percent-wrapper::after { content: '%'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-weight: 700; color: #9CA3AF; }
+        
+        .remove-btn { background: #FEE2E2; color: var(--danger); border: none; width: 48px; height: 48px; border-radius: 12px; cursor: pointer; font-size: 18px; font-weight: 700; }
+        
+        .add-btn { width: 100%; padding: 14px; background: transparent; border: 2px dashed #D1D5DB; border-radius: 12px; color: #6B7280; font-weight: 700; cursor: pointer; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        .results-header { font-size: 12px; font-weight: 800; color: #6B7280; text-transform: uppercase; margin-bottom: 12px; }
+        .result-card { display: flex; justify-content: space-between; align-items: center; padding: 16px; background: white; border-radius: 14px; margin-bottom: 8px; border: 1px solid #E5E7EB; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .result-card.remaining { border-left: 4px solid var(--success); background: #F0FDF4; }
+        .result-card.splitter { border-left: 4px solid var(--primary); }
+        
+        .res-info { display: flex; flex-direction: column; }
+        .res-label { font-size: 13px; font-weight: 700; color: #4B5563; }
+        .res-sub { font-size: 11px; color: #9CA3AF; }
+        .res-val { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; color: var(--primary); }
+        .remaining .res-val { color: var(--success); }
+
+        .final-summary { background: #111827; color: white; padding: 20px; border-radius: var(--radius); margin-top: 20px; display: none; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+        .summary-row:last-child { margin-bottom: 0; border-top: 1px solid #374151; padding-top: 8px; margin-top: 8px; }
+        .summary-val { font-weight: 800; color: #60A5FA; }
+
+        .error-msg { background: #FEF2F2; color: var(--danger); padding: 12px; border-radius: 12px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="home-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </a>
+            <h1>DistroCalc Pro</h1>
+        </header>
+
+        <div class="mode-switcher">
+            <button id="mode-percent" class="mode-btn active">Persentase</button>
+            <button id="mode-splitter" class="mode-btn">Splitter</button>
+        </div>
+
+        <div class="card">
+            <label for="pin">Power Input (dBm)</label>
+            <input type="number" id="pin" value="-2" step="0.1">
+        </div>
+
+        <div id="error" class="error-msg">Total persentase melebihi 100%!</div>
+
+        <div id="input-container"></div>
+
+        <button id="add-btn" class="add-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span id="add-btn-text">Tambah Rasio</span>
+        </button>
+
+        <div class="results-header">Hasil Kalkulasi</div>
+        <div id="results-list"></div>
+        <div id="remaining-container"></div>
+
+        <div id="final-summary" class="final-summary">
+            <div class="summary-row">
+                <span>Total Rasio Split:</span>
+                <span id="total-ratio-val" class="summary-val">1:1</span>
+            </div>
+            <div class="summary-row">
+                <span>Output Akhir:</span>
+                <span id="final-dbm-val" class="summary-val">-2.00 dBm</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputContainer = document.getElementById('input-container');
+        const resultsList = document.getElementById('results-list');
+        const remainingContainer = document.getElementById('remaining-container');
+        const pinInput = document.getElementById('pin');
+        const addBtn = document.getElementById('add-btn');
+        const addBtnText = document.getElementById('add-btn-text');
+        const errorMsg = document.getElementById('error');
+        const finalSummary = document.getElementById('final-summary');
+        
+        let currentMode = 'percent'; 
+        let percentValues = [1, 2];
+        let splitterValues = ['3.5'];
+
+        const splitterData = {
+            '3.5': { label: '1:2', ratio: 2 },
+            '7': { label: '1:4', ratio: 4 },
+            '10.5': { label: '1:8', ratio: 8 },
+            '13.5': { label: '1:16', ratio: 16 },
+            '17': { label: '1:32', ratio: 32 }
+        };
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.getElementById('mode-percent').classList.toggle('active', mode === 'percent');
+            document.getElementById('mode-splitter').classList.toggle('active', mode === 'splitter');
+            addBtnText.textContent = mode === 'percent' ? 'Tambah Rasio' : 'Tambah Splitter';
+            renderInputs();
+        }
+
+        function calculate() {
+            const pin = parseFloat(pinInput.value) || 0;
+            let resultsHtml = '';
+            
+            if (currentMode === 'percent') {
+                const inputs = document.querySelectorAll('.val-input');
+                let sum = 0;
+                inputs.forEach(input => {
+                    const p = parseFloat(input.value) || 0;
+                    sum += p;
+                    if (p > 0) {
+                        const dbm = pin + 10 * Math.log10(p / 100);
+                        resultsHtml += `
+                            <div class="result-card">
+                                <div class="res-info"><span class="res-label">Output ${p}%</span></div>
+                                <span class="res-val">${dbm.toFixed(2)} dBm</span>
+                            </div>
+                        `;
+                    }
+                });
+
+                resultsList.innerHTML = resultsHtml;
+                finalSummary.style.display = 'none';
+
+                if (sum > 100) {
+                    errorMsg.style.display = 'block';
+                    remainingContainer.innerHTML = '';
+                } else {
+                    errorMsg.style.display = 'none';
+                    const remP = 100 - sum;
+                    if (remP > 0) {
+                        const remDbm = pin + 10 * Math.log10(remP / 100);
+                        remainingContainer.innerHTML = `
+                            <div class="result-card remaining">
+                                <div class="res-info">
+                                    <span class="res-label">Sisa ${remP.toFixed(1)}%</span>
+                                    <span class="res-sub">Power melalui (Through)</span>
+                                </div>
+                                <span class="res-val">${remDbm.toFixed(2)} dBm</span>
+                            </div>
+                        `;
+                    } else {
+                        remainingContainer.innerHTML = '';
+                    }
+                }
+            } else {
+                errorMsg.style.display = 'none';
+                remainingContainer.innerHTML = '';
+                let currentP = pin;
+                let totalRatio = 1;
+                const inputs = document.querySelectorAll('.val-input');
+                
+                inputs.forEach((input, i) => {
+                    const loss = parseFloat(input.value);
+                    const data = splitterData[input.value];
+                    const output = currentP - loss;
+                    resultsHtml += `
+                        <div class="result-card splitter">
+                            <div class="res-info">
+                                <span class="res-label">Splitter ${i+1} (${data.label})</span>
+                                <span class="res-sub">Input: ${currentP.toFixed(2)} dBm</span>
+                            </div>
+                            <span class="res-val">${output.toFixed(2)} dBm</span>
+                        </div>
+                    `;
+                    currentP = output;
+                    totalRatio *= data.ratio;
+                });
+
+                resultsList.innerHTML = resultsHtml;
+                finalSummary.style.display = 'block';
+                document.getElementById('total-ratio-val').textContent = `1:${totalRatio}`;
+                document.getElementById('final-dbm-val').textContent = `${currentP.toFixed(2)} dBm`;
+            }
+        }
+
+        function renderInputs() {
+            const data = currentMode === 'percent' ? percentValues : splitterValues;
+            inputContainer.innerHTML = data.map((val, i) => `
+                <div class="item-row">
+                    <div class="input-wrapper ${currentMode === 'percent' ? 'percent-wrapper' : ''}">
+                        ${currentMode === 'percent' 
+                            ? `<input type="number" class="val-input" value="${val}" oninput="updateVal(${i}, this.value)" step="0.1">`
+                            : `<select class="val-input" onchange="updateVal(${i}, this.value)">
+                                ${Object.keys(splitterData).map(k => `<option value="${k}" ${k == val ? 'selected' : ''}>${splitterData[k].label} (${k} dB)</option>`).join('')}
+                               </select>`
+                        }
+                    </div>
+                    <button class="remove-btn" onclick="removeItem(${i})">×</button>
+                </div>
+            `).join('');
+            calculate();
+        }
+
+        window.updateVal = (i, val) => {
+            if (currentMode === 'percent') percentValues[i] = val;
+            else splitterValues[i] = val;
+            calculate();
+        };
+
+        window.removeItem = (i) => {
+            if (currentMode === 'percent') percentValues.splice(i, 1);
+            else splitterValues.splice(i, 1);
+            renderInputs();
+        };
+
+        addBtn.addEventListener('click', () => {
+            if (currentMode === 'percent') percentValues.push(0);
+            else splitterValues.push('3.5');
+            renderInputs();
+        });
+
+        document.getElementById('mode-percent').addEventListener('click', () => switchMode('percent'));
+        document.getElementById('mode-splitter').addEventListener('click', () => switchMode('splitter'));
+        pinInput.addEventListener('input', calculate);
+
+        renderInputs();
+    </script>
+</body>
+</html>

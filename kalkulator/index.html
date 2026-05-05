@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Simulasi Cascade Fiber</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <h1>CascadeSim Pro</h1>
+            </div>
+            <p class="subtitle">Alat Simulasi Redaman Berantai</p>
+        </header>
+
+        <main>
+            <section class="config-section">
+                <div class="card ptx-card">
+                    <div class="input-group no-margin">
+                        <label for="ptx">Power Transmit (Ptx dBm)</label>
+                        <input type="number" id="ptx" value="3" step="0.5" inputmode="decimal">
+                        <span class="helper">Level sinyal sumber (OLT/SFP)</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="flow-connector first"></div>
+
+            <section id="splitter-list" class="splitter-list">
+                <!-- Splitter blocks will be injected here -->
+            </section>
+
+            <section class="action-section">
+                <button type="button" id="add-splitter-btn" class="btn secondary outline full-width">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Tambah Tahap Splitter
+                </button>
+            </section>
+
+            <section id="final-results" class="results-section">
+                <div class="flow-connector last"></div>
+                <div class="result-card final-output">
+                    <span class="label">Output Akhir (Prx)</span>
+                    <div class="value-container">
+                        <span id="final-prx" class="value">3.00</span>
+                        <span class="unit">dBm</span>
+                    </div>
+                </div>
+
+                <div id="status-card" class="status-card">
+                    <div class="status-header">
+                        <div id="status-icon" class="status-icon"></div>
+                        <span id="status-text" class="status-text">NORMAL</span>
+                    </div>
+                    <p id="recommendation" class="recommendation-text">Sinyal berada dalam batas aman.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="sticky-footer">
+            <div class="button-group single">
+                <button type="button" id="reset-btn" class="btn primary">Reset Simulasi</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

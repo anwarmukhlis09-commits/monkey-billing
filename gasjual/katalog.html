@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk - GasJual.id</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="padding-top: 80px;">
+    <!-- Navbar Placeholder -->
+    <nav class="navbar glass">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <img src="../1.1/logo_gasjual.png" alt="GasJual.id" class="logo-img">
+            </a>
+            <div class="nav-links" style="display:flex;">
+                <a href="index.html">Home</a>
+                <a href="katalog.html" class="active" style="color:var(--primary-blue);">Katalog Produk</a>
+                <a href="#faq">Bantuan</a>
+            </div>
+            <div class="nav-actions" style="display:flex;">
+                <a href="#" class="btn btn-outline login-trigger">Login</a>
+                <a href="#" class="btn btn-primary register-trigger">Daftar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="padding-y bg-light-alt text-center">
+        <div class="container">
+            <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 16px;">Katalog <span class="text-accent">Produk</span></h1>
+            <p class="text-muted" style="font-size: 1.125rem; max-width: 600px; margin: 0 auto;">Pilih produk terlaris dengan margin keuntungan tinggi. Ribuan reseller telah membuktikan hasilnya.</p>
+        </div>
+    </section>
+
+    <!-- Catalog Details -->
+    <section class="padding-y">
+        <div class="container">
+            <!-- Search & Filter -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 16px;">
+                <div style="position: relative; flex: 1; max-width: 400px;">
+                    <i class="fas fa-search" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                    <input type="text" class="form-control" placeholder="Cari nama produk..." style="padding-left: 48px;">
+                </div>
+                <div style="display: flex; gap: 16px;">
+                    <select class="form-control" style="width: auto;">
+                        <option>Semua Kategori</option>
+                        <option>Elektronik</option>
+                        <option>Fashion</option>
+                        <option>Kecantikan</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid">
+                <!-- 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sneakers">
+                        <div class="profit-tag">Untung Rp 50.000</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sneakers Urban Blaze</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">Fashion Pria</p>
+                        <div class="price-row">
+                            <span class="price-label">Harga Jual:</span>
+                            <span class="price-value">Rp 250.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-3 register-trigger"><i class="fas fa-rocket"></i> Gas Jual</button>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Headphones">
+                        <div class="profit-tag">Untung Rp 75.000</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Headphone BassBoost Pro</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">Elektronik</p>
+                        <div class="price-row">
+                            <span class="price-label">Harga Jual:</span>
+                            <span class="price-value">Rp 350.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-3 register-trigger"><i class="fas fa-rocket"></i> Gas Jual</button>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Camera">
+                        <div class="profit-tag">Untung Rp 150.000</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Action Cam 4K Ultra</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">Kamera & Aksesoris</p>
+                        <div class="price-row">
+                            <span class="price-label">Harga Jual:</span>
+                            <span class="price-value">Rp 850.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-3 register-trigger"><i class="fas fa-rocket"></i> Gas Jual</button>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Smartwatch">
+                        <div class="profit-tag">Untung Rp 90.000</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smartwatch GT Active</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">Elektronik</p>
+                        <div class="price-row">
+                            <span class="price-label">Harga Jual:</span>
+                            <span class="price-value">Rp 450.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-3 register-trigger"><i class="fas fa-rocket"></i> Gas Jual</button>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Serum">
+                        <div class="profit-tag">Untung Rp 40.000</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>GlowUP Serum Anti-Aging</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">Kecantikan</p>
+                        <div class="price-row">
+                            <span class="price-label">Harga Jual:</span>
+                            <span class="price-value">Rp 120.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-3 register-trigger"><i class="fas fa-rocket"></i> Gas Jual</button>
+                    </div>
+                </div>
+                <!-- 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Backpack">
+                        <div class="profit-tag">Untung Rp 65.000</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Backpack Explorer Pro</h3>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 12px;">Fashion Pria</p>
+                        <div class="price-row">
+                            <span class="price-label">Harga Jual:</span>
+                            <span class="price-value">Rp 210.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-block mt-3 register-trigger"><i class="fas fa-rocket"></i> Gas Jual</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-outline" style="min-width: 250px;">Muat Lebih Banyak Produk...</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal Overlay -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <div class="auth-header text-center">
+                <h3>Selamat Datang di <span class="text-accent">GasJual</span></h3>
+                <p>Silakan masuk atau daftar untuk mulai berbisnis.</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-target="login">Login</button>
+                <button class="auth-tab" data-target="register">Daftar</button>
+            </div>
+            
+            <div class="auth-forms">
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active" action="dashboard.html">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="nama@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" class="form-control" placeholder="Masukkan password" required>
+                            <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                </form>
+                
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form" action="dashboard.html">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" placeholder="Sesuai KTP" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="nama@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" class="form-control" placeholder="Minimal 8 karakter" required>
+                            <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Daftar Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="footer-bottom" style="margin-top: 0; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.1);">
+            <div class="container text-center">
+                <p>&copy; 2026 GasJual.id. All rights reserved.</p>
+                <a href="index.html" class="text-primary mt-3" style="display:inline-block; font-weight:600; color:var(--primary-blue);">&larr; Kembali ke Beranda Utama</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

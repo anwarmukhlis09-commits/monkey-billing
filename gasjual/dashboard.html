@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Reseller - GasJual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">
+                <img src="../1.1/logo_gasjual.png" alt="GasJual.id" class="logo-img">
+            </a>
+            <button class="close-sidebar d-md-none"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="user-profile-sm">
+            <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=1E3A8A&color=fff" alt="User">
+            <div class="user-info-sm">
+                <h4>Budi Santoso</h4>
+                <p>Reseller Aktif</p>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-target="beranda"><i class="fas fa-home"></i> Beranda</a>
+            <a href="#" class="nav-item" data-target="katalog"><i class="fas fa-box"></i> Katalog Produk</a>
+            <a href="#" class="nav-item" data-target="pesanan"><i class="fas fa-shopping-bag"></i> Pesanan Saya</a>
+            <a href="#" class="nav-item" data-target="saldo"><i class="fas fa-wallet"></i> Saldo & Penarikan <span class="badge-alert">!</span></a>
+            <a href="#" class="nav-item" data-target="pengaturan"><i class="fas fa-cog"></i> Pengaturan</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item text-danger"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar glass">
+            <button class="menu-toggle d-md-none"><i class="fas fa-bars"></i></button>
+            <div class="page-title">
+                <h2 id="topbar-title">Beranda Ringkasan</h2>
+            </div>
+            <div class="topbar-actions">
+                <button class="action-btn notifications"><i class="far fa-bell"></i><span class="indicator"></span></button>
+                <div class="user-dropdown">
+                    <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=1E3A8A&color=fff" alt="User" class="avatar-sm">
+                    <span class="d-none d-sm-inline">Budi S.</span>
+                    <i class="fas fa-chevron-down d-none d-sm-inline"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+            
+            <!-- VIEW: BERANDA -->
+            <div id="view-beranda" class="dashboard-view active">
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-icon bg-blue-light"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-details">
+                            <p>Total Saldo Aktif</p>
+                            <h3>Rp 1.250.000</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon bg-green-light"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="stat-details">
+                            <p>Pesanan Berhasil</p>
+                            <h3>34</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon bg-purple-light"><i class="fas fa-mouse-pointer"></i></div>
+                        <div class="stat-details">
+                            <p>Klik Link Toko</p>
+                            <h3>892</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon bg-orange-light"><i class="fas fa-clock"></i></div>
+                        <div class="stat-details">
+                            <p>Pesanan Diproses</p>
+                            <h3>5</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts & Tables -->
+                <div class="dashboard-row mt-4">
+                    <div class="chart-section glass">
+                        <div class="section-header-sm">
+                            <h3>Statistik Penjualan</h3>
+                            <select class="form-control-sm">
+                                <option>7 Hari Terakhir</option>
+                                <option>30 Hari Terakhir</option>
+                            </select>
+                        </div>
+                        <div class="chart-container" style="position: relative; height:300px; width:100%; padding-top: 20px;">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="transactions-section glass">
+                        <div class="section-header-sm">
+                            <h3>Transaksi Terbaru</h3>
+                            <a href="#" class="view-all">Lihat Semua</a>
+                        </div>
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="t-icon success"><i class="fas fa-arrow-down"></i></div>
+                                <div class="t-info">
+                                    <h4>Komisi - Sneakers Urban</h4>
+                                    <p>INV-00921 • Hari ini, 10:24</p>
+                                </div>
+                                <div class="t-amount success">+Rp 50.000</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="t-icon success"><i class="fas fa-arrow-down"></i></div>
+                                <div class="t-info">
+                                    <h4>Komisi - Headphone Bass</h4>
+                                    <p>INV-00918 • Kemarin, 15:30</p>
+                                </div>
+                                <div class="t-amount success">+Rp 75.000</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="t-icon warning"><i class="fas fa-clock"></i></div>
+                                <div class="t-info">
+                                    <h4>Pencairan Dana (Pending)</h4>
+                                    <p>WD-1002 • 2 Hari lalu</p>
+                                </div>
+                                <div class="t-amount text-dark">-Rp 500.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End View Beranda -->
+
+            <!-- VIEW: PESANAN SAYA -->
+            <div id="view-pesanan" class="dashboard-view" style="display: none;">
+                <div class="glass" style="padding: 24px; border-radius: 24px;">
+                    <div class="section-header-sm mb-4">
+                        <h3>Daftar Pesanan</h3>
+                        <div style="display: flex; gap: 12px;">
+                            <input type="text" class="form-control-sm" placeholder="Resi / Nama Pembeli">
+                            <select class="form-control-sm">
+                                <option>Semua Status</option>
+                                <option>Diproses</option>
+                                <option>Dikirim</option>
+                                <option>Selesai</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid rgba(0,0,0,0.05); text-align: left; color: var(--text-muted);">
+                                    <th style="padding: 16px 8px;">Order ID/Tgl</th>
+                                    <th style="padding: 16px 8px;">Produk</th>
+                                    <th style="padding: 16px 8px;">Pembeli</th>
+                                    <th style="padding: 16px 8px;">Status</th>
+                                    <th style="padding: 16px 8px;">Komisi</th>
+                                    <th style="padding: 16px 8px;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                    <td style="padding: 16px 8px;">
+                                        <strong>#ORD-9912</strong><br>
+                                        <span style="font-size: 0.8rem; color: var(--text-muted);">27 Mar 2026</span>
+                                    </td>
+                                    <td style="padding: 16px 8px;">Sneakers Urban Blaze</td>
+                                    <td style="padding: 16px 8px;">Bapak Tono<br><span style="font-size: 0.8rem;">Jakarta Selatan</span></td>
+                                    <td style="padding: 16px 8px;"><span style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">Selesai</span></td>
+                                    <td style="padding: 16px 8px; font-weight: 600; color: #22c55e;">Rp 50.000</td>
+                                    <td style="padding: 16px 8px;"><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Detail</button></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                    <td style="padding: 16px 8px;">
+                                        <strong>#ORD-9915</strong><br>
+                                        <span style="font-size: 0.8rem; color: var(--text-muted);">28 Mar 2026</span>
+                                    </td>
+                                    <td style="padding: 16px 8px;">Headphone BassBoost Pro</td>
+                                    <td style="padding: 16px 8px;">Ibu Susi<br><span style="font-size: 0.8rem;">Bandung</span></td>
+                                    <td style="padding: 16px 8px;"><span style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">Dikirim</span></td>
+                                    <td style="padding: 16px 8px; font-weight: 600; color: var(--text-muted);">Rp 75.000</td>
+                                    <td style="padding: 16px 8px;"><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Lacak</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- End View Pesanan -->
+
+            <!-- VIEW: SALDO & PENARIKAN -->
+            <div id="view-saldo" class="dashboard-view" style="display: none;">
+                <div class="dashboard-row">
+                    <div class="glass" style="padding: 24px; border-radius: 24px;">
+                        <h3 style="margin-bottom: 8px;">Saldo Tersedia</h3>
+                        <h1 style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 24px;">Rp 1.250.000</h1>
+                        
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label>Nominal Penarikan</label>
+                            <input type="number" class="form-control" placeholder="Minimal Rp 50.000" min="50000" max="1250000">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label>Rekening Tujuan</label>
+                            <select class="form-control">
+                                <option>BCA - 892***321 a.n Budi Santoso</option>
+                                <option>Gopay - 0812***892</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-block">Tarik Saldo Sekarang</button>
+                    </div>
+
+                    <div class="glass transactions-section">
+                        <div class="section-header-sm">
+                            <h3>Riwayat Penarikan</h3>
+                        </div>
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="t-icon warning"><i class="fas fa-clock"></i></div>
+                                <div class="t-info">
+                                    <h4>Pencairan ke BCA</h4>
+                                    <p>25 Mar 2026</p>
+                                </div>
+                                <div class="t-amount text-dark">-Rp 500.000</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="t-icon success"><i class="fas fa-check"></i></div>
+                                <div class="t-info">
+                                    <h4>Pencairan ke Gopay</h4>
+                                    <p>10 Mar 2026</p>
+                                </div>
+                                <div class="t-amount text-dark">-Rp 250.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End View Saldo -->
+
+            <!-- VIEW: PENGATURAN -->
+            <div id="view-pengaturan" class="dashboard-view" style="display: none;">
+                <div class="glass" style="padding: 24px; border-radius: 24px; max-width: 600px;">
+                    <h3 style="margin-bottom: 24px;">Profil Reseller</h3>
+                    <div class="user-profile-sm" style="border:none; padding: 0 0 24px;">
+                        <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=1E3A8A&color=fff" alt="User" style="width: 80px; height: 80px;">
+                        <button class="btn btn-outline" style="padding: 8px 16px;">Ubah Foto</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" value="Budi Santoso">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="budi@example.com" disabled style="background:#f1f5f9;">
+                    </div>
+                    <div class="form-group">
+                        <label>No. WhatsApp</label>
+                        <input type="text" class="form-control" value="081234567890">
+                    </div>
+                    <button class="btn btn-primary mt-3">Simpan Perubahan</button>
+                </div>
+            </div> <!-- End View Pengaturan -->
+
+            <!-- VIEW: KATALOG (Fallback link) -->
+            <div id="view-katalog" class="dashboard-view" style="display: none;">
+                <div class="glass text-center" style="padding: 60px 24px; border-radius: 24px;">
+                    <i class="fas fa-box-open" style="font-size: 4rem; color: var(--text-muted); margin-bottom: 24px; opacity: 0.5;"></i>
+                    <h3>Buka Katalog Produk Terlengkap</h3>
+                    <p class="text-muted" style="margin-bottom: 24px; max-width: 400px; margin-left:auto; margin-right:auto;">Jelajahi ratusan produk dropship yang siap Anda bagikan ke media sosial.</p>
+                    <a href="katalog.html" class="btn btn-primary" target="_blank">Buka Halaman Katalog <i class="fas fa-external-link-alt" style="margin-left:8px;"></i></a>
+                </div>
+            </div> <!-- End View Katalog -->
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

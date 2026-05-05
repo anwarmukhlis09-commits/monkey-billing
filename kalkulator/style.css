@@ -1,0 +1,301 @@
+:root {
+    --primary: #2563EB;
+    --primary-dark: #1D4ED8;
+    --bg: #F9FAFB;
+    --card: #FFFFFF;
+    --text-main: #111827;
+    --text-muted: #6B7280;
+    --success: #16A34A;
+    --success-bg: #DCFCE7;
+    --warning: #CA8A04;
+    --warning-bg: #FEF9C3;
+    --danger: #DC2626;
+    --danger-bg: #FEE2E2;
+    --radius: 16px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 16px 120px; /* Extra padding at bottom for sticky footer */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.logo h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.input-section {
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    background-color: #FDFDFD;
+    -webkit-appearance: none;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #FFF;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.helper {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.grid-2 .input-group {
+    margin-bottom: 0;
+}
+
+.no-margin { margin-bottom: 0 !important; }
+.full-width { width: 100%; }
+
+/* Flow Connectors */
+.flow-connector {
+    width: 2px;
+    height: 32px;
+    background-color: var(--primary);
+    margin: 0 auto;
+    position: relative;
+    opacity: 0.5;
+}
+
+.flow-connector::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--primary);
+}
+
+.flow-connector.first { margin-top: -8px; }
+.flow-connector.last { margin-bottom: 0; }
+
+/* Splitter Cards */
+.splitter-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 0;
+    position: relative;
+    border-left: 4px solid var(--primary);
+}
+
+.splitter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.splitter-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.splitter-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #F3F4F6;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric .label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.metric .val {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+}
+
+.metric.input .val { color: var(--primary); }
+.metric.loss .val { color: var(--danger); }
+.metric.output .val { color: var(--success); }
+
+/* Action Section */
+.action-section {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.btn.outline {
+    background: transparent;
+    border: 2px dashed #D1D5DB;
+    color: var(--text-muted);
+    box-shadow: none;
+}
+
+.btn.outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+/* Final Results */
+.result-card.final-output {
+    border-left: 4px solid var(--primary);
+    background: #111827;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.result-card.final-output .label { color: #9CA3AF; }
+.result-card.final-output .value { color: white; }
+
+/* Variations for status */
+.status-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-group.single {
+    grid-template-columns: 1fr;
+}
+
+/* Animation for blocks */
+.splitter-item {
+    transition: all 0.3s ease;
+}
+
+.splitter-item.removing {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
