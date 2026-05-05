@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiber Optic Calculator - Tree Diagram</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <i data-lucide="network"></i>
+            <div class="brand-text">
+                <h1>Fiber Optic Calculator</h1>
+                <p>Penjumlahan Rasio & Splitter</p>
+            </div>
+        </div>
+        <button class="btn-reset" onclick="resetApp()">
+            <i data-lucide="rotate-ccw"></i>
+            Reset
+        </button>
+    </header>
+
+    <div class="zoom-controls">
+        <button onclick="changeZoom(0.1)" title="Zoom In"><i data-lucide="plus"></i></button>
+        <button onclick="changeZoom(-0.1)" title="Zoom Out"><i data-lucide="minus"></i></button>
+        <button onclick="resetZoom()" title="Reset Zoom"><i data-lucide="maximize"></i></button>
+    </div>
+
+    <main id="app-canvas">
+        <div id="diagram-canvas">
+            <svg id="connections"></svg>
+            <div id="tree-root"></div>
+        </div>
+    </main>
+
+    <div class="summary-panel">
+        <div class="summary-card">
+            <i data-lucide="zap"></i>
+            <div>
+                <h4>Transmitter Power</h4>
+                <p id="sum-tx">8 dBm</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <i data-lucide="map-pin"></i>
+            <div>
+                <h4>Total Jarak</h4>
+                <p id="sum-dist">0 km</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <i data-lucide="git-branch"></i>
+            <div>
+                <h4>Total Splitter</h4>
+                <p id="sum-splitters">0</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <i data-lucide="activity"></i>
+            <div>
+                <h4>Loss Terakhir (Worst)</h4>
+                <p id="sum-worst">-8.0 dBm</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Power Visual Bar (Floating or bottom of summary) -->
+    <div style="padding: 0 2rem 1.5rem 2rem; background: var(--bg-card);">
+        <div class="power-visual">
+            <div class="bar-labels">
+                <span id="power-min">Min</span>
+                <span id="power-current">Current: 8 dBm</span>
+                <span id="power-max">Max</span>
+            </div>
+            <div class="bar-container">
+                <div class="bar-fill" id="power-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Node Configuration -->
+    <div class="modal-overlay" id="node-modal">
+        <div class="modal">
+            <h2 id="modal-title">Konfigurasi Node</h2>
+            <div class="form-group">
+                <label>Nama ODP / Splitter</label>
+                <input type="text" id="node-name" placeholder="Contoh: ODP-01">
+            </div>
+            <div class="form-group" id="group-power">
+                <label>Power Output (dBm)</label>
+                <input type="number" id="node-power" step="0.1" value="8">
+            </div>
+            <div class="form-group" id="group-ratio">
+                <label>Rasio Splitter</label>
+                <select id="node-ratio">
+                    <option value="1">No Splitter (1:1)</option>
+                    <option value="2">1:2 (-3.5 dB)</option>
+                    <option value="4">1:4 (-7.2 dB)</option>
+                    <option value="8">1:8 (-10.5 dB)</option>
+                    <option value="16">1:16 (-13.8 dB)</option>
+                    <option value="32">1:32 (-17.1 dB)</option>
+                    <option value="unbalanced">PLC Unbalanced (2 Output)</option>
+                </select>
+            </div>
+            <div class="form-group" id="group-percentage" style="display: none;">
+                <label>Pilih Rasio (%)</label>
+                <select id="node-percentage">
+                <select id="node-percentage">
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+            <div class="form-group" id="group-distance">
+                <label>Jarak dari Parent (km)</label>
+                <input type="number" id="node-dist" step="0.1" value="1">
+                <small style="color: var(--text-muted)">Loss Kabel: <span id="node-cable-loss">-0.35</span> dB</small>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                <button class="btn btn-danger" id="btn-delete" onclick="deleteNode()">Hapus</button>
+                <button class="btn btn-primary" onclick="saveNode()">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
